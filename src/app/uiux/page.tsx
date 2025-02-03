@@ -10,7 +10,7 @@ const EcommerceUI = () => {
         <h1 className="text-indigo-400 font-semibold text-xl">JUST UX</h1>
         <h2 className="text-4xl font-bold mt-4">ecommerce</h2>
         <h2 className="text-4xl font-bold">user interface kit</h2>
-        <h2 className="text-4xl font-bold">Syeda Uzma Ahmed (Roll No # 0044862)</h2>
+        <h2 className="text-4xl font-bold">Maham Babar</h2>
       </header>
 
       {/* Product Section */}
