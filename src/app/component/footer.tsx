@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { RiInstagramLine } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -7,6 +9,43 @@ import { SlSocialTwitter } from "react-icons/sl";
 import { SlSocialPintarest } from "react-icons/sl";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const validateEmail = (email: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    setEmailError("");
+    setShowSuccess(false);
+  };
+
+  const handleSubmit = () => {
+    if (!email) {
+      setEmailError("Email is required");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
+    // Mock successful submission
+    setShowSuccess(true);
+    setEmail("");
+    setEmailError("");
+    
+    // Reset success message after 5 seconds
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 5000);
+  };
+
   return (
     <div>
       {/* Footer Section */}
@@ -51,16 +90,31 @@ const Footer = () => {
             {/* Mailing List Column (Right side) */}
             <div className="lg:w-1/2 md:w-full w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3 font-[Clash Display] lg:ml-10">Join Our Mailing List</h2>
-              <div className="flex flex-wrap justify-center space-x-2">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full sm:w-96  p-3 text-lg bg-[#dedbdb] mb-2 sm:mb-0 md:w-full lg:w-80" // Ensuring full width on mobile
-                  style={{ height: '50px' }}
-                />
-                <button className="bg-[#FAFAFA] text-[#2A254B] w-full sm:w-[90px] p-3 sm:p-1 hover:bg-[#dedbdb] sm:mt-2">
-                  Sign Up
-                </button>
+              <div className="flex flex-col items-center">
+                <div className="flex flex-wrap justify-center space-x-2 w-full">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={handleEmailChange}
+                    className={`w-full sm:w-96 p-3 text-lg bg-[#dedbdb] mb-2 sm:mb-0 md:w-full lg:w-80 text-black ${emailError ? 'border-2 border-red-500' : ''}`}
+                    style={{ height: '50px' }}
+                  />
+                  <button 
+                    onClick={handleSubmit}
+                    className="bg-[#FAFAFA] text-[#2A254B] w-full sm:w-[90px] p-3 sm:p-1 hover:bg-[#dedbdb] sm:mt-2"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+                {emailError && (
+                  <p className="text-red-400 text-sm mt-1 w-full text-left lg:ml-10">{emailError}</p>
+                )}
+                {showSuccess && (
+  <p className="text-green-400 text-sm mt-2 font-medium tracking-wide w-full text-left lg:ml-10">
+    ✓ Thank you for subscribing to our mailing list!
+  </p>
+)}
               </div>
             </div>
           </div>
