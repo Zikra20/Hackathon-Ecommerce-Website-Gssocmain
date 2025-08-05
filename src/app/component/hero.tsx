@@ -10,7 +10,7 @@ const Hero = () => {
           <div className="md:w-1/2 text-left space-y-6 sm:px-4 sm:py-6">
             {/* Heading */}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2A254B] sm:mb-4 lg:mb-48">
-              The furniture brand for the future&apo;, with timeless designs
+              The furniture brand for the future&apos;s lifestyle, with timeless designs
             </h2>
             {/* Paragraph */}
             <p className="text-lg md:text-xl text-[#2A254B] leading-relaxed sm:mb-6">
