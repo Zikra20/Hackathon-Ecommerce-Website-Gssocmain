@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-[#2A254B] text-[#FAFAFA] shadow-lg ">
+    <nav className="bg-[#2A254B] text-[#FAFAFA] shadow-lg">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo Section */}
         <div className="text-2xl font-bold tracking-wide">
@@ -15,29 +15,39 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex space-x-6 lg:p-5">
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/">Home Page</Link>
-          </li>
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/homepage">Home Page v.2</Link>
-          </li>
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/product">Product Listing</Link>
-          </li>
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/about">About Page</Link>
-          </li>
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/productlist">Product Listings</Link>
-          </li>
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/shopping">Shopping Baskets</Link>
-          </li>
-          <li className="hover:text-gray-500 transition duration-300">
-            <Link href="/uiux" className="block hover:text-gray-400">UI/UX</Link>
-          </li>
-        </ul>
+        <div className="hidden md:flex items-center space-x-6 lg:p-5">
+          <ul className="flex space-x-6">
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/">Home Page</Link>
+            </li>
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/homepage">Home Page v.2</Link>
+            </li>
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/product">Product Listing</Link>
+            </li>
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/about">About Page</Link>
+            </li>
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/productlist">Product Listings</Link>
+            </li>
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/shopping">Shopping Baskets</Link>
+            </li>
+            <li className="hover:text-gray-500 transition duration-300">
+              <Link href="/uiux">UI/UX</Link>
+            </li>
+          </ul>
+
+          {/* Login/Signup Button */}
+          <Link
+            href="/auth/login"
+            className="ml-6 bg-yellow-400 hover:bg-yellow-500 text-[#2A254B] font-semibold py-2 px-4 rounded-xl transition"
+          >
+            Login/Signup
+          </Link>
+        </div>
 
         {/* Mobile Menu Toggle Button */}
         <div className="md:hidden">
@@ -87,6 +97,10 @@ const Navbar = () => {
           </Link>
           <Link href="/uiux" className="block hover:text-gray-500">
             UI/UX
+          </Link>
+          {/* Login/Signup in Mobile Menu */}
+          <Link href="/auth/login" className="block hover:text-yellow-400 font-semibold">
+            Login/Signup
           </Link>
         </div>
       )}
