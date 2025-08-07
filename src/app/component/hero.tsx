@@ -1,5 +1,7 @@
-import React from 'react';
-import Image from 'next/image'; // Import Image from next/image
+"use client";
+
+import React from "react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
@@ -9,17 +11,19 @@ const Hero = () => {
           {/* Left Content */}
           <div className="md:w-1/2 text-left space-y-6 sm:px-4 sm:py-6">
             {/* Heading */}
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2A254B] sm:mb-4 lg:mb-48">
-              The furniture brand for the future&apo;, with timeless designs
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2A254B] dark:text-[#F8D7E3] sm:mb-4 lg:mb-16">
+              The furniture brand for the future, with timeless designs
             </h2>
+
             {/* Paragraph */}
-            <p className="text-lg md:text-xl text-[#2A254B] leading-relaxed sm:mb-6">
-              A new era in eco-friendly furniture with Avelon the French luxury retail brand with nice fonts tasteful colors and a beautiful way to display things digitally using modern web technologies.
+            <p className="text-lg md:text-xl text-[#2A254B] dark:text-[#e8bfcf] leading-relaxed sm:mb-6">
+              A new era in eco-friendly furniture with Avelon, the French luxury retail brand featuring elegant fonts, tasteful colors, and a stunning digital showcase built with modern technologies.
             </p>
+
             {/* Button */}
             <div className="sm:mt-4">
-              <button className="p-4 w-[170px] h-[56px] text-[#2A254B] bg-gray-200 border-0 focus:outline-none hover:bg-black hover:text-white text-lg transition-all duration-300 ease-in-out">
-                View collection
+              <button className="p-4 w-[170px] h-[56px] rounded-lg text-[#2A254B] dark:text-[#1a121c] bg-gray-200 dark:bg-[#F8D7E3] hover:bg-[#2A254B] hover:text-white dark:hover:bg-white dark:hover:text-[#1a121c] transition-all duration-300 ease-in-out text-lg font-medium shadow-md">
+                View Collection
               </button>
             </div>
           </div>
@@ -29,9 +33,9 @@ const Hero = () => {
             <Image
               src="/chair.png"
               alt="Chair"
-              width={500} // Specify width for optimization
-              height={500} // Specify height for optimization
-              className="w-full max-w-[400px] md:max-w-[500px] h-auto object-cover"
+              width={500}
+              height={500}
+              className="w-full max-w-[400px] md:max-w-[500px] h-auto object-cover drop-shadow-xl"
             />
           </div>
         </div>
