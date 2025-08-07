@@ -12,7 +12,7 @@ const Hero = () => {
           <div className="md:w-1/2 text-left space-y-6 sm:px-4 sm:py-6">
             {/* Heading */}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2A254B] dark:text-[#F8D7E3] sm:mb-4 lg:mb-16">
-              The furniture brand for the future, with timeless designs
+              The furniture brand for the future&apos;s lifestyle, with timeless designs
             </h2>
 
             {/* Paragraph */}
