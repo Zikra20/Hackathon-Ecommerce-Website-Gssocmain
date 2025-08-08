@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Optional: Smooth theme transition */
+html {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Default light mode styles */
+body {
+  @apply bg-white text-black;
+}
+
+/* Dark mode styles when .dark is on <html> */
+.dark body {
+  @apply bg-gray-900 text-white;
+}
