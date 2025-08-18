@@ -3,16 +3,27 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
+import { auth } from "../firebaseConfig"; // adjust path
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
+    // Theme setup
     const stored = localStorage.getItem("theme") as "light" | "dark" | null;
     const initial = stored || "light";
     setTheme(initial);
     document.documentElement.classList.toggle("dark", initial === "dark");
+
+    // Auth state listener
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const toggleTheme = () => {
@@ -20,6 +31,11 @@ const Navbar = () => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    setUser(null);
   };
 
   return (
@@ -42,18 +58,38 @@ const Navbar = () => {
               { href: "/shopping", label: "Shopping Baskets" },
               { href: "/uiux", label: "UI/UX" },
             ].map(({ href, label }) => (
-              <li key={href} className="hover:text-gray-400 dark:hover:text-dark-accent transition duration-300">
+              <li
+                key={href}
+                className="hover:text-gray-400 dark:hover:text-dark-accent transition duration-300"
+              >
                 <Link href={href}>{label}</Link>
               </li>
             ))}
           </ul>
 
-          <Link
-            href="/auth/login"
-            className="ml-6 bg-yellow-400 hover:bg-yellow-500 text-[#2A254B] font-semibold py-2 px-4 rounded-xl transition"
-          >
-            Login/Signup
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href="/profile"
+                className="ml-6 bg-green-400 hover:bg-green-500 text-[#2A254B] font-semibold py-2 px-4 rounded-xl transition"
+              >
+                Profile
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="ml-4 bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-xl transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/auth/login"
+              className="ml-6 bg-yellow-400 hover:bg-yellow-500 text-[#2A254B] font-semibold py-2 px-4 rounded-xl transition"
+            >
+              Login/Signup
+            </Link>
+          )}
 
           <button
             onClick={toggleTheme}
@@ -94,7 +130,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
             </svg>
           </button>
         </div>
@@ -111,12 +152,27 @@ const Navbar = () => {
             { href: "/productlist", label: "Product Listings" },
             { href: "/shopping", label: "Shopping Baskets" },
             { href: "/uiux", label: "UI/UX" },
-            { href: "/auth/login", label: "Login/Signup" },
+            user
+              ? { href: "/profile", label: "Profile" }
+              : { href: "/auth/login", label: "Login/Signup" },
           ].map(({ href, label }) => (
-            <Link key={href} href={href} className="block hover:text-dark-accent font-medium">
+            <Link
+              key={href}
+              href={href}
+              className="block hover:text-dark-accent font-medium"
+            >
               {label}
             </Link>
           ))}
+
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="block w-full bg-red-400 hover:bg-red-500 text-white font-semibold py-2 rounded-xl transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
       )}
     </nav>

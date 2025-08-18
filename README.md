@@ -20,6 +20,34 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Firebase Setup
+
+1. This project uses Firebase Authentication (email/password) and Firestore to store user profiles.
+
+2. Create a Firebase project at Firebase Console.
+
+3. Enable Authentication: Go to Authentication → Sign-in method → Email/Password and enable it.
+
+4. Enable Firestore: Create a collection named users to store user profiles.
+
+5. Add Firebase config to .env:
+
+```bash
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
+
+6. Install Firebase SDK
+
+```
+npm install firebase
+```
+
+The app automatically handles sign-up, login, and profile creation in Firestore.
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
