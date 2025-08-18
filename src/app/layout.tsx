@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from './component/header';
 import Footer from "./component/footer";
 import Navbar from "./component/navbar";
+import ScrollToTop from "./component/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
 }
+

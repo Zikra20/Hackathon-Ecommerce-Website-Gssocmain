@@ -56,10 +56,10 @@ const Footer = () => {
             <div className="lg:w-1/4 md:w-1/3 w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3">Menu</h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a className="hover:text-gray-400">New arrivals</a></li>
+                <li><a href= "/product" className="hover:text-gray-400">New arrivals</a></li>
                 <li><a className="hover:text-gray-400">Recently viewed</a></li>
                 <li><a className="hover:text-gray-400">Popular this week</a></li>
-                <li><a className="hover:text-gray-400">All products</a></li>
+                <li><a href= "/productlist" className="hover:text-gray-400">All products</a></li>
               </nav>
             </div>
 
@@ -67,11 +67,11 @@ const Footer = () => {
             <div className="lg:w-1/4 md:w-1/3 w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3">Categories</h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a className="hover:text-gray-400">Furniture</a></li>
-                <li><a className="hover:text-gray-400">Homeware</a></li>
-                <li><a className="hover:text-gray-400">Plant pots</a></li>
-                <li><a className="hover:text-gray-400">Chairs</a></li>
-                <li><a className="hover:text-gray-400">Crockery</a></li>
+                <li><a href="/uiux" className="hover:text-gray-400">Furniture</a></li>
+                <li><a href="/homepage" className="hover:text-gray-400">Homeware</a></li>
+                <li><a href="/" className="hover:text-gray-400">Plant pots</a></li>
+                <li><a href="/about" className="hover:text-gray-400">Chairs</a></li>
+                <li><a href="/product" className="hover:text-gray-400">Crockery</a></li>
               </nav>
             </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
             <div className="lg:w-1/4 md:w-1/3 w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3">Our Company</h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a className="hover:text-gray-400">About us</a></li>
+                <li><a href= "/about" className="hover:text-gray-400">About us</a></li>
                 <li><a className="hover:text-gray-400">Vacancies</a></li>
                 <li><a className="hover:text-gray-400">Contact us</a></li>
                 <li><a className="hover:text-gray-400">Privacy</a></li>
