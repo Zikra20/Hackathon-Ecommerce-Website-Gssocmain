@@ -1,6 +1,38 @@
-import React from "react";
+'use client'
+import React, { useState, useEffect } from 'react';
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email) {
+      setError('Email is required');
+      setSuccess('');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address');
+      setSuccess('');
+      return;
+    }
+    setError('');
+    setSuccess('Thank you for signing up!');
+    setEmail('');
+  };
+
+  // Auto remove success message after 5 seconds
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess('');
+      }, 5000);
+      return () => clearTimeout(timer); // cleanup on unmount or re-render
+    }
+  }, [success]);
+
   return (
     <section
       className="relative bg-cover bg-center w-full h-[481px] md:h-[550px] lg:h-[550px]"
@@ -34,17 +66,21 @@ const SignUp = () => {
         </div>
 
         {/* Input and button */}
-        <div className="flex justify-center flex-col sm:flex-row items-center gap-4 sm:gap-6">
+        <form onSubmit={handleSubmit} className="flex justify-center flex-col sm:flex-row items-center gap-4 sm:gap-6">
           <input
             type="email"
             placeholder="your@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full sm:w-96 lg:w-96 p-4 text-lg bg-[#F9F9F9] dark:bg-[#f9c8d9] dark:text-[#5c1a32] rounded-md"
             aria-label="Email address"
           />
-          <button className="bg-[#2A254B] dark:bg-[#ff99ac] text-white dark:text-[#5c1a32] p-4 text-lg rounded-md hover:bg-[#3C2A5A] dark:hover:bg-[#ffb3c1] transition duration-300">
+          <button type="submit" className="bg-[#2A254B] dark:bg-[#ff99ac] text-white dark:text-[#5c1a32] p-4 text-lg rounded-md hover:bg-[#3C2A5A] dark:hover:bg-[#ffb3c1] transition duration-300">
             Sign Up
           </button>
-        </div>
+        </form>
+        {error && <p className="text-red-500 mt-2">{error}</p>}
+        {success && <p className="text-green-500 mt-2">{success}</p>}
       </div>
     </section>
   );
