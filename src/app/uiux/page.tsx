@@ -1,6 +1,22 @@
 "use client";
 
 import Image from "next/image"; // Importing Next.js Image component
+import { products, Product } from "./products";
+
+// Product card component
+const ProductCard = ({ product }: { product: Product }) => (
+  <div className="text-left hover:scale-105 transform transition-all duration-300">
+    <Image
+      src={product.image}
+      alt={product.alt}
+      width={500}
+      height={500}
+      className="w-full h-80 object-cover rounded-lg"
+    />
+    <h3 className="text-lg mt-4">{product.name}</h3>
+    <p className="text-gray-400">{product.price}</p>
+  </div>
+);
 
 const EcommerceUI = () => {
   return (
@@ -16,70 +32,9 @@ const EcommerceUI = () => {
       {/* Product Section */}
       <section className="py-16">
         <div className="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {/* Product 1 */}
-          <div className="text-left hover:scale-105 transform transition-all duration-300">
-            <Image
-              src="/chair.png"
-              alt="The Dandy Chair"
-              width={500}
-              height={500}
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <h3 className="text-lg mt-4">The Dandy Chair</h3>
-            <p className="text-gray-400">£250</p>
-          </div>
-
-          {/* Product 2 */}
-          <div className="text-left hover:scale-105 transform transition-all duration-300">
-            <Image
-              src="/lamp.png"
-              alt="New Lamp"
-              width={500}
-              height={500}
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <h3 className="text-lg mt-4">New Lamp</h3>
-            <p className="text-gray-400">£350</p>
-          </div>
-
-          {/* Product 3 */}
-          <div className="text-left hover:scale-105 transform transition-all duration-300">
-            <Image
-              src="/table.png"
-              alt="The Stanley Table"
-              width={500}
-              height={500}
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <h3 className="text-lg mt-4">The Stanley Table</h3>
-            <p className="text-gray-400">£125</p>
-          </div>
-
-          {/* Product 4 */}
-          <div className="text-left hover:scale-105 transform transition-all duration-300">
-            <Image
-              src="/stool.png"
-              alt="Stool"
-              width={500}
-              height={500}
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <h3 className="text-lg mt-4">Stool</h3>
-            <p className="text-gray-400">£250</p>
-          </div>
-
-          {/* Product 5 */}
-          <div className="text-left hover:scale-105 transform transition-all duration-300">
-            <Image
-              src="/vase.png"
-              alt="Andel Vase"
-              width={500}
-              height={500}
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <h3 className="text-lg mt-4">Andel Vase</h3>
-            <p className="text-gray-400">£95</p>
-          </div>
+          {products.map((product) => (
+            <ProductCard key={product.name} product={product} />
+          ))}
         </div>
       </section>
     </div>
