@@ -123,7 +123,7 @@ const Footer = () => {
         {/* Footer Bottom Section */}
         <div className="bg-[#2A254B] py-4">
           <div className="container mx-auto flex justify-between items-center">
-            <p className="text-sm sm:ml-10">© Copyright 2024 MahamBabar (GIAIC)</p>
+            <p className="text-sm sm:ml-10">© Copyright {new Date().getFullYear()} MahamBabar (GIAIC)</p>
             <div className="flex space-x-4 text-2xl sm:mr-10 sm:space-x-2 ">
               <a href="#" className="hover:text-gray-400"><FaFacebookSquare /></a>
               <a href="#" className="hover:text-gray-400"><RiInstagramLine /></a>
