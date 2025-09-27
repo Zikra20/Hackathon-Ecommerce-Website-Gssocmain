@@ -9,67 +9,72 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navItems = ["Plant Pots", "Ceramics", "Tables", "Chairs", "Crockery", "Tableware", "Cutlery"];
+
   return (
-    <header className="bg-white dark:bg-[#2e1f2f] shadow-md sticky top-0 z-10 transition-all duration-300">
+    <header className="bg-white dark:bg-[#2e1f2f] shadow-md sticky top-0 z-50 transition-all duration-300">
       {/* Top Section */}
-      <div className="container mx-auto flex justify-between items-center px-4 md:px-6 py-4">
-        {/* Search Icon */}
-        <div className="flex items-center space-x-4">
-          <span className="text-gray-900 dark:text-pink-100">
-            <CiSearch size={24} />
-          </span>
+      <div className="container mx-auto flex justify-between items-center px-4 md:px-6 py-2 md:py-3">
+        {/* Left: Search */}
+        <div className="flex items-center">
+          <CiSearch size={28} className="text-gray-900 dark:text-pink-100 cursor-pointer" />
         </div>
 
-        {/* Logo */}
-        <h1 className="text-lg md:text-xl font-bold text-[#22202E] dark:text-pink-100">
+        {/* Center: Logo */}
+        <h1 className="text-2xl md:text-3xl font-extrabold text-[#22202E] dark:text-pink-100 truncate text-center">
           Avion
         </h1>
 
-        {/* Cart and Profile Icons */}
+        {/* Right: Desktop Icons */}
         <div className="hidden md:flex items-center space-x-4">
-          <a href="/shopping" className="hover:text-black dark:hover:text-pink-200">
-            <span className="text-gray-900 dark:text-pink-100">
-              <IoCartOutline size={24} />
-            </span>
+          <a
+            href="/shopping"
+            className="text-gray-900 dark:text-pink-100 hover:text-black dark:hover:text-pink-200 transition-colors duration-200"
+          >
+            <IoCartOutline size={26} />
           </a>
           <span className="text-gray-900 dark:text-pink-100">
-            <FaRegUserCircle size={24} />
+            <FaRegUserCircle size={26} />
           </span>
         </div>
 
-        {/* Hamburger Menu */}
+        {/* Hamburger Menu for Mobile */}
         <button
-          className="block md:hidden text-gray-900 dark:text-pink-100"
+          className="md:hidden text-gray-900 dark:text-pink-100 focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <GiHamburgerMenu size={24} />
+          <GiHamburgerMenu size={28} />
         </button>
       </div>
 
-      {/* Desktop Navigation Links */}
+      {/* Desktop Navigation */}
       <nav className="hidden md:flex border-t border-gray-200 dark:border-pink-400/30">
-        <div className="container mx-auto px-6 py-3 flex justify-center space-x-6 text-gray-600 dark:text-pink-100">
-          <a href="/" className="hover:text-black dark:hover:text-pink-300">Plant Pots</a>
-          <a href="/homepage" className="hover:text-black dark:hover:text-pink-300">Ceramics</a>
-          <a href="/productlist" className="hover:text-black dark:hover:text-pink-300">Tables</a>
-          <a href="/about" className="hover:text-black dark:hover:text-pink-300">Chairs</a>
-          <a href="/product" className="hover:text-black dark:hover:text-pink-300">Crockery</a>
-          <a href="/shopping" className="hover:text-black dark:hover:text-pink-300">Tableware</a>
-          <a href="/uiux" className="hover:text-black dark:hover:text-pink-300">Cutlery</a>
+        <div className="container mx-auto px-6 py-2 flex justify-center space-x-6 text-gray-600 dark:text-pink-100 font-medium">
+          {navItems.map((item, index) => (
+            <a
+              key={index}
+              href="/"
+              className="hover:text-black dark:hover:text-pink-300 transition-colors duration-200 whitespace-nowrap text-sm md:text-base"
+            >
+              {item}
+            </a>
+          ))}
         </div>
       </nav>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white dark:bg-[#3a243f] absolute top-0 left-0 w-full shadow-lg transition-all duration-300">
-          <div className="container mx-auto px-6 py-4 space-y-4 text-gray-600 dark:text-pink-100">
-            <a href="/" className="block hover:text-indigo-600 dark:hover:text-pink-300">Plant Pots</a>
-            <a href="/homepage" className="block hover:text-indigo-600 dark:hover:text-pink-300">Ceramics</a>
-            <a href="/productlist" className="block hover:text-indigo-600 dark:hover:text-pink-300">Tables</a>
-            <a href="/about" className="block hover:text-indigo-600 dark:hover:text-pink-300">Chairs</a>
-            <a href="/product" className="block hover:text-indigo-600 dark:hover:text-pink-300">Crockery</a>
-            <a href="/shopping" className="block hover:text-indigo-600 dark:hover:text-pink-300">Tableware</a>
-            <a href="/uiux" className="block hover:text-indigo-600 dark:hover:text-pink-300">Cutlery</a>
+        <div className="md:hidden bg-white dark:bg-[#3a243f] absolute top-full left-0 w-full shadow-lg transition-transform duration-300 z-40">
+          <div className="container mx-auto px-4 py-3 flex flex-col space-y-2 text-gray-600 dark:text-pink-100 font-medium">
+            {navItems.map((item, index) => (
+              <a
+                key={index}
+                href="/"
+                className="block hover:text-indigo-600 dark:hover:text-pink-300 transition-colors duration-200 text-sm"
+              >
+                {item}
+              </a>
+            ))}
           </div>
         </div>
       )}
@@ -78,3 +83,4 @@ const Header = () => {
 };
 
 export default Header;
+
