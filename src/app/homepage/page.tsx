@@ -1,4 +1,5 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 import { TbTruckDelivery } from "react-icons/tb";
 import { IoMdCheckmark } from "react-icons/io";
 import { LuSprout } from "react-icons/lu";
@@ -6,6 +7,29 @@ import { GoCreditCard } from "react-icons/go";
 import Image from 'next/image';
 
 const HomePage = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleSubscription = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      setError('Email is required');
+      setSuccess('');
+      return;
+    }
+    //- Add email validation logic here
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address');
+      setSuccess('');
+      return;
+    }
+    //- On successful subscription
+    setError('');
+    setSuccess('Thank you for subscribing!');
+    setEmail('');
+  };
+
   return (
     <div className="bg-white text-[#22202E] dark:bg-[#2B1C2E] dark:text-[#FBE4EB]">
       {/* Full-width Image as Background */}
@@ -160,16 +184,20 @@ const HomePage = () => {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:w-1/2 md:w-1/3 lg:w-1/4 justify-center items-center mx-auto">
+          <form onSubmit={handleSubscription} className="flex flex-col sm:flex-row sm:w-1/2 md:w-1/3 lg:w-1/4 justify-center items-center mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="px-4 py-3 mb-4 sm:mb-0 rounded-md w-full sm:w-[500px]"
             />
-            <button className="bg-[#2A254B] text-white px-6 py-3 rounded-md w-full sm:w-auto">
+            <button type="submit" className="bg-[#2A254B] text-white px-6 py-3 rounded-md w-full sm:w-auto">
               Subscribe
             </button>
-          </div>
+          </form>
+          {error && <p className="text-red-500 mt-2">{error}</p>}
+          {success && <p className="text-green-500 mt-2">{success}</p>}
         </div>
       </section>
     </div>

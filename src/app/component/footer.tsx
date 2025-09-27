@@ -81,7 +81,7 @@ const Footer = () => {
               <nav className="list-none mb-10 space-y-2">
                 <li><a href= "/about" className="hover:text-gray-400">About us</a></li>
                 <li><a className="hover:text-gray-400">Vacancies</a></li>
-                <li><a className="hover:text-gray-400">Contact us</a></li>
+                <li><a href="/contact" className="hover:text-gray-400">Contact us</a></li>
                 <li><a className="hover:text-gray-400">Privacy</a></li>
                 <li><a className="hover:text-gray-400">Returns policy</a></li>
               </nav>
